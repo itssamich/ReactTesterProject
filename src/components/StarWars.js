@@ -3,10 +3,11 @@ import React, {useState, useEffect} from 'react'
 
 export default function StarWars(){
     const [results, setResults] = useState();
-    const [pageNum, setPageNum] = useState(0);
+    const [pageNum, setPageNum] = useState(1);
 
     useEffect(() => {
-        fetch(`https://swapi.dev/api/people/?page=${pageNum + 1}`)
+        console.log(pageNum)
+        fetch(`https://swapi.dev/api/people/?page=${pageNum}`)
         .then((response) => response.json())
         .then((json) => setResults(json))
         .catch(console.error)
@@ -18,7 +19,7 @@ export default function StarWars(){
 
     const nextPage = () => setPageNum(pageNum + 1)
     const prevPage = () => {
-        if(pageNum > 0){
+        if(pageNum > 1){
             setPageNum(pageNum - 1)
         }
     }
